@@ -69,7 +69,11 @@ vector<fs::path> traverse_directory(fs::path &root) {
     directories_queue.pop();
 
     for (fs::directory_iterator it(p), end; it != end; it++) {
+      if (fs::is_symlink(it->path())) {
+        continue;
+      }
       if (fs::is_directory(it->path())) {
+        fs::is_symlink(it->path());
         directories_queue.push(fs::canonical(it->path()));
       }
       paths.push_back(fs::canonical(it->path()));
