@@ -1,6 +1,6 @@
 CXX := clang++
 CXXFLAGS := -Wall -pedantic -g -std=c++11
-LIBS := -lboost_program_options -lboost_filesystem -lboost_system -lboost_thread-mt
+LIBS := -lboost_program_options -lboost_filesystem -lboost_system
 
 OS := $(shell uname -s)
 
