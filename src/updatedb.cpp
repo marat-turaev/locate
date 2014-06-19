@@ -53,7 +53,7 @@ void parallel_sort(Iterator data, int length, int limit, Comp comparator) {
   if (length < limit) {
     std::sort(data, data + length, comparator);
   } else {
-    auto future = std::async(std::launch::async, parallel_sort<Iterator, Comp>, data, length / 2, limit, comparator);
+    auto future = std::async(std::launch::async, &parallel_sort<Iterator, Comp>, data, length / 2, limit, comparator);
     parallel_sort(data + length / 2, length / 2 + (length & 1), limit, comparator);
     future.wait();
     std::inplace_merge(data, data + length / 2, data + length, comparator);
