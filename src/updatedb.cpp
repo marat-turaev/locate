@@ -71,9 +71,8 @@ vector<fs::path> traverse_directory(fs::path &root) {
     for (fs::directory_iterator it(p), end; it != end; it++) {
       if (fs::is_directory(it->path())) {
         directories_queue.push(fs::canonical(it->path()));
-      } else {
-        paths.push_back(fs::canonical(it->path()));
       }
+      paths.push_back(fs::canonical(it->path()));
     }
   }
   return paths;
